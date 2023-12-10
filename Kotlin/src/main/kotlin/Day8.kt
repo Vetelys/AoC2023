@@ -1,4 +1,3 @@
-import java.math.BigInteger
 
 private data class Node(
     val right: String,
