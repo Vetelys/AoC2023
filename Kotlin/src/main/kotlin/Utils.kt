@@ -5,6 +5,25 @@ fun readFile(fileName: String): List<String> {
     return File(fileName).readLines()
 }
 
+data class Coordinate(
+    val x: Int,
+    val y: Int
+)
+
+class Grid(private val strings: List<String>) {
+    private val container = List(strings.size) { index -> strings[index].toList()}
+    val width = strings.maxBy { it.length }
+    val height = strings.size
+
+    fun at(x: Int, y: Int): Char {
+        return container[y][x]
+    }
+
+    operator fun get(c: Coordinate): Char {
+        return container[c.y][c.x]
+    }
+}
+
 /*
 LCM from here: https://www.baeldung.com/kotlin/lcm - modified to use BigInteger
 */
