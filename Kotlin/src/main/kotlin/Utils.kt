@@ -32,6 +32,39 @@ class Grid(private val strings: List<String>) {
         }
         return Grid(strings)
     }
+    
+    fun nextCoordinate(currentLocation: Coordinate, currentDirection: Direction): Coordinate? {
+        return when(currentDirection) {
+            Direction.NORTH -> {
+                if (currentLocation.y > 0) {
+                    currentLocation.copy(y = currentLocation.y - 1)
+                } else {
+                    null
+                }
+            }
+            Direction.EAST -> {
+                if (currentLocation.x < width - 1) {
+                    currentLocation.copy(x = currentLocation.x + 1)
+                } else {
+                    null
+                }
+            }
+            Direction.SOUTH -> {
+                if (currentLocation.y < height - 1) {
+                    currentLocation.copy(y = currentLocation.y + 1)
+                } else {
+                    null
+                }
+            }
+            Direction.WEST -> {
+                if (currentLocation.x > 0) {
+                    currentLocation.copy(x = currentLocation.x - 1)
+                } else {
+                    null
+                }
+            }
+        }
+    }
 
     fun flip(): Grid {
         return Grid(container.reversed().map { it.joinToString("") })
