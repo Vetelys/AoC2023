@@ -70,6 +70,22 @@ class Grid(private val strings: List<String>) {
         return Grid(container.reversed().map { it.joinToString("") })
     }
 
+    fun find(char: Char): Coordinate? {
+        (0..<width).forEach { x ->
+            (0..<height).forEach { y ->
+                if (container[y][x] == char) {
+                    return Coordinate(x = x, y = y)
+                }
+            }
+        }
+        return null
+    }
+
+    fun nextCharTo(c: Coordinate, dir: Direction): Char? {
+        val nextCoord = nextCoordinate(c, dir) ?: return null
+        return this@Grid[nextCoord]
+    }
+
     operator fun get(c: Coordinate): Char {
         return container[c.y][c.x]
     }
